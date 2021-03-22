@@ -4,7 +4,7 @@ package homework.homework8;
 public class App {
     public static void main(String[] args) {
 
-        Athletes athletes[] = {new Human("Bob", 1.5, 1500),
+        Athletes athletes[] = {new Human("Alex", 1.5, 1500),
                 new Robot("Model2020", 0, 100),
                 new Robot("Model2021", 0, 0),
                 new Cat("Barsic", 3, 300)
