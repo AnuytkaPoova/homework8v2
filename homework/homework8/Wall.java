@@ -1,14 +1,25 @@
 package homework.homework8;
 
 public class Wall implements Barrier {
-     private double distance;
 
-     public Wall(double distance) {
-         this.distance = distance;
+     private double height;
+
+     public Wall(double height) {
+         this.height = height;
      }
+
+
+     public double overcomeParameters(){
+        return height;
+    }
 
      @Override
-    public double overcome() {
-            return distance;
+    public boolean overcome(Athletes athletes) {
+         if (athletes.maxJumpHeight() >= height) {
+             return true;
+         }
+         return  false;
      }
+
+
 }

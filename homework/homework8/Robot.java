@@ -1,40 +1,46 @@
 package homework.homework8;
 
 public class Robot implements Athletes{
-    private  double maxJumpDistance;
-    private  double maxRunDistance;
-    private Barrier barrier;
-    private Wall wall;
-    private TrackRun trackRun;
+
+    private double maxJumpHeight;
+    private double maxRunDistance;
     private String name;
     private Genus genus;
 
-    public Robot(String name,double maxJumpDistance, double maxRunDistance ) {
+    public Robot(String name, double maxJumpHeight, double maxRunDistance) {
         this.name = name;
-        this.maxJumpDistance = maxJumpDistance;
+        this.maxJumpHeight = maxJumpHeight;
         this.maxRunDistance = maxRunDistance;
         this.genus = Genus.ROBOT;
     }
 
-    public void sportsProcess() {
-        sportsProcess();
+    public Class<Athletes> getAthletes() {
+        return Athletes.class;
     }
-    public boolean sportsProcess(Wall wall) {
-        double distance = wall.overcome();
-        if (maxJumpDistance == 0 || distance > maxJumpDistance ) {
-            System.out.printf("%s %s не может перепрыгнуть стену высотой %.2f м.\n", genus.getGenus(), name, distance);
-            return false;
-        } else
-            System.out.printf("%s %s успешно перепрыгнул стену высотой %.2f м.\n", genus.getGenus(), name,  distance);
-        return true;
+    public double maxJumpHeight(){
+        return maxJumpHeight;
     }
-    public boolean sportsProcess(TrackRun trackRun) {
-        double distance = trackRun.overcome();
-        if (maxRunDistance == 0 || distance > maxRunDistance ) {
-            System.out.printf("%s %s не проходит беговую дорожку  %.0f м.\n",genus.getGenus(), name, distance);
-            return false;
-        } else
-            System.out.printf("%s %s Успешно проходит беговую дорожку  %.0f м.\n",genus.getGenus(), name, distance);
-        return true;
+    public double maxRunDistance() {
+        return maxRunDistance;
+    }
+
+
+    public boolean run(Barrier barrier) {
+        if (barrier.overcome(this)) {
+            System.out.printf("%s %s Успешно проходит беговую дорожку  %.1f м.\n",genus.getGenus(), name, barrier.overcomeParameters());
+            return true;
+        }
+        System.out.printf("%s %s не может пробежать беговую дорожку %.1f м.\n", genus.getGenus(), name, barrier.overcomeParameters());
+        return false;
+    }
+
+    public boolean jump(Barrier barrier) {
+        if (barrier.overcome(this )){
+            System.out.printf("%s %s Успешно перепрыгнул стену высотой %.1f м.\n", genus.getGenus(), name, barrier.overcomeParameters());
+            return true;
+        }
+
+        System.out.printf("%s %s не может перепрыгнуть стену высотой %.1f м.\n", genus.getGenus(), name, barrier.overcomeParameters());
+        return false;
     }
 }

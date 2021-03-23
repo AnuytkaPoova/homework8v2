@@ -1,68 +1,47 @@
 package homework.homework8;
 
-public class Human implements Athletes{
-     private  double maxJumpDistance;
-     private  double maxRunDistance;
-     private Barrier barrier;
-     private Wall wall;
-     private TrackRun trackRun;
-     private String name;
-     private Genus genus;
+public class Human implements Athletes {
 
-     public Human(String name,double maxJumpDistance, double maxRunDistance ) {
-         this.name = name;
-         this.maxJumpDistance = maxJumpDistance;
-         this.maxRunDistance = maxRunDistance;
-         this.genus = Genus.HUMAN;
-     }
+    private double maxJumpHeight;
+    private double maxRunDistance;
+    private String name;
+    private Genus genus;
 
-     public void sportsProcess() {
-         sportsProcess();
-     }
-     public boolean sportsProcess(Wall wall) {
-         double distance = wall.overcome();
-         if (maxJumpDistance == 0 || distance > maxJumpDistance ) {
-             System.out.printf("%s %s не может перепрыгнуть стену высотой %.2f м.\n", genus.getGenus(), name, distance);
-             return false;
-         } else
-             System.out.printf("%s %s успешно перепрыгнул стену высотой %.2f м.\n", genus.getGenus(), name,  distance);
-         return true;
-     }
-     public boolean sportsProcess(TrackRun trackRun) {
-         double distance = trackRun.overcome();
-         if (maxRunDistance == 0 || distance > maxRunDistance ) {
-             System.out.printf("%s %s не проходит беговую дорожку  %.0f м.\n",genus.getGenus(), name, distance);
-             return false;
-         } else
-             System.out.printf("%s %s Успешно проходит беговую дорожку  %.0f м.\n",genus.getGenus(), name, distance);
-         return true;
-     }
+
+    public Human(String name, double maxJumpHeight, double maxRunDistance) {
+        this.name = name;
+        this.maxJumpHeight = maxJumpHeight;
+        this.maxRunDistance = maxRunDistance;
+        this.genus = Genus.HUMAN;
+
+    }
+
+    public double maxJumpHeight(){
+        return maxJumpHeight;
+    }
+    public double maxRunDistance() {
+        return maxRunDistance;
+   }
+
+
+    public boolean run(Barrier barrier) {
+        if (barrier.overcome(this)) {
+            System.out.printf("%s %s Успешно проходит беговую дорожку  %.1f м.\n",genus.getGenus(), name, barrier.overcomeParameters());
+            return true;
+        }
+        System.out.printf("%s %s не может пробежать беговую дорожку %.1f м.\n", genus.getGenus(), name, barrier.overcomeParameters());
+            return false;
+    }
+
+    public boolean jump(Barrier barrier) {
+        if (barrier.overcome(this )){
+            System.out.printf("%s %s Успешно перепрыгнул стену высотой %.1f м.\n", genus.getGenus(), name, barrier.overcomeParameters());
+            return true;
+        }
+
+        System.out.printf("%s %s не может перепрыгнуть стену высотой %.1f м.\n", genus.getGenus(), name, barrier.overcomeParameters());
+            return false;
+    }
+
 
 }
-    //private double height;
-    //private double length;
-    //private Jumping jumping;
-    /*
-     private double PutDistance(Jumping jumping) {
-         return height;
-     }
-     private double PutDistance(TrackRun trackRun) {
-         return length;
-     }
-     /
-      */
-     /*
-     public void sportsProcess(int length) {
-         if (maxRunDistance == 0 || height > maxRunDistance ) {
-             System.out.printf("%s не смог пробежать %d м.\n", name, maxRunDistance);
-         } else
-             System.out.printf("%s Успешно пробежал %d м. \n", name, length);
-     }*/
-
- /*
-     public void sportsProcess(double height) {
-         if (maxJumpDistance == 0 || height > maxJumpDistance ) {
-             System.out.printf("%s не смог прыгнуть на заявленную высоту %.2f м. \n", name, maxJumpDistance);
-         } else
-             System.out.printf("%s успешно смог прыгнуть на заявленную высот %.2f м. \n",name, height);
-     }*/
