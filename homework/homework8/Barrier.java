@@ -2,5 +2,8 @@ package homework.homework8;
 
 
 public interface Barrier {
-    double overcome();
+
+
+    boolean overcome(Athletes athletes);
+    double overcomeParameters();
 }

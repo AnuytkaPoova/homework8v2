@@ -1,7 +1,12 @@
 package homework.homework8;
 
 public interface Athletes {
-    void sportsProcess();
+
+    boolean run(Barrier barrier);
+    boolean jump(Barrier barrier);
+    double maxJumpHeight();
+    double maxRunDistance();
+
 
 
 }

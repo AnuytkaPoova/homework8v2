@@ -4,6 +4,8 @@ public enum Genus {
     HUMAN("Человек"),
     ROBOT("Робот"),
     CAT("Кот");
+
+
     public String genus;
 
     Genus(String genus) {
